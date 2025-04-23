@@ -17,6 +17,8 @@ services:
     depends_on:
       ckan:
         condition: service_healthy
+    volumes:
+      - "/etc/letsencrypt:/etc/letsencrypt"
     ports:
       - "0.0.0.0:${NGINX_SSLPORT_HOST}:${NGINX_SSLPORT}"
     
