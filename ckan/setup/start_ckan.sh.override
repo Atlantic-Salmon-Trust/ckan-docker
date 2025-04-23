@@ -2,6 +2,9 @@
 
 # Add ckan.datapusher.api_token to the CKAN config file (updated with corrected value later)
 ckan config-tool $CKAN_INI ckan.datapusher.api_token=xxx
+# Add upload types for changing logo as admin
+ckan config-tool $CKAN_INI ckan.upload.admin.types = .png .jpg .jpeg .gif
+ckan config-tool $CKAN_INI ckan.upload.admin.mimetypes = image/png image/jpeg image/gif
 
 # Set up the Secret key used by Beaker and Flask
 # This can be overriden using a CKAN___BEAKER__SESSION__SECRET env var
