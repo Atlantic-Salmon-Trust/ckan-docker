@@ -1,10 +1,17 @@
 FROM ckan/ckan-base:2.11
 
-apt update && apt install build-essential python3-dev libssl-dev swig
+# Switch to root to run apt
+USER root
+
+RUN apt update && apt install -y swig
+
 # Install any extensions needed by your CKAN instance
 ### ckanext-azure-auth ###
-RUN  pip3 install -e git+https://github.com/datopian/ckanext-azure-auth.git@ckan-2.10.3 && \
-     pip3 install -r https://raw.githubusercontent.com/datopian/ckanext-azure-auth/refs/heads/ckan-2.10.3/requirements.txt
+RUN  pip3 install -e git+https://github.com/Atlantic-Salmon-Trust/ckanext-azure-auth.git@ckan-2.11#egg=ckanext-azure-auth && \
+     pip3 install -r https://raw.githubusercontent.com/Atlantic-Salmon-Trust/ckanext-azure-auth/refs/heads/ckan-2.11/requirements.txt
+
+# Switch back to ckan user
+USER ckan
 
 # See Dockerfile.dev for more details and examples
 
