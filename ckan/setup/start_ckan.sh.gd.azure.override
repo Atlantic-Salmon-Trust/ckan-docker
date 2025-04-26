@@ -6,6 +6,25 @@ if [[ $CKAN__PLUGINS == *"datapusher"* ]]; then
     ckan config-tool $CKAN_INI ckan.datapusher.api_token=xxx
 fi
 
+if [[ $CKAN__PLUGINS == *"azure_auth"* ]]; then
+    # Add settings for azure_auth to the CKAN config file (updated with corrected value later)
+    echo "Setting temporary value for azure_auth configuration"
+    ckan config-tool $CKAN_INI ckanext.azure_auth.wtrealm=xxx
+    ckan config-tool $CKAN_INI ckanext.azure_auth.tenant_id=xxx
+    ckan config-tool $CKAN_INI ckanext.azure_auth.client_id=xxx
+    ckan config-tool $CKAN_INI ckanext.azure_auth.audience=xxx
+    ckan config-tool $CKAN_INI ckanext.azure_auth.client_secret=xxx
+    # Allow plugin to create new users
+    ckan config-tool $CKAN_INI ckanext.azure_auth.allow_create_users=xxx
+    # Force Multi-Factor Authentication usage
+    ckan config-tool $CKAN_INI ckanext.azure_auth.force_mfa=xxx
+    # Whether to disable single sign-on and force the ADFS server to show a login prompt.
+    ckan config-tool $CKAN_INI ckanext.azure_auth.disable_sso=xxx
+    # local environment callback
+    ckan config-tool $CKAN_INI ckanext.azure_auth.redirect_uri=xxx
+    ckan config-tool $CKAN_INI ckanext.azure_auth.auth_callback_path=xxx
+fi
+
 # Set up the Secret key used by Beaker and Flask
 # This can be overriden using a CKAN___BEAKER__SESSION__SECRET env var
 if grep -qE "SECRET_KEY ?= ?$" ckan.ini
