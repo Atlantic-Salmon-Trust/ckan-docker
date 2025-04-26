@@ -7,6 +7,6 @@ _service-provider/*
 _solr/schema.xml
 _src/*
 local/*
-.env
+*.env
 .Rproj.user
 .Rhistory
