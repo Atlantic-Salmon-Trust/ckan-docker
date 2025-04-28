@@ -11,5 +11,4 @@ COPY setup/index.html /usr/share/nginx/html/index.html
 COPY setup/error.html /usr/share/nginx/html/error.html
 COPY setup/default.conf ${NGINX_DIR}/conf.d/
 
-ENTRYPOINT \
-  nginx -g 'daemon off;'
+ENTRYPOINT nginx -g 'daemon off;'
