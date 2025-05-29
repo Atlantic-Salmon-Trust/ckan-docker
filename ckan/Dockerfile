@@ -6,15 +6,14 @@ USER root
 RUN apt update && apt install -y swig
 
 # Install any extensions needed by your CKAN instance
-### ckanext-azure-auth ###
-RUN  pip3 install -e git+https://github.com/Atlantic-Salmon-Trust/ckanext-azure-auth.git@ckan-2.11#egg=ckanext-azure-auth && \
-     pip3 install -r https://raw.githubusercontent.com/Atlantic-Salmon-Trust/ckanext-azure-auth/refs/heads/ckan-2.11/requirements.txt
+### ckanext-oauth2 ###
+RUN  pip install ckanext-oauth2
 
 # See Dockerfile.dev for more details and examples
 
 # Copy custom initialization scripts
 COPY --chown=ckan-sys:ckan-sys docker-entrypoint.d/* /docker-entrypoint.d/
-COPY --chown=ckan-sys:ckan-sys setup/start_ckan.sh.gd.azure.override ${APP_DIR}/start_ckan.sh
+#COPY --chown=ckan-sys:ckan-sys setup/start_ckan.sh.gd.azure.override ${APP_DIR}/start_ckan.sh
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
 COPY --chown=ckan-sys:ckan-sys patches ${APP_DIR}/patches
