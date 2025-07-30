@@ -3,7 +3,7 @@ FROM ckan/ckan-base:2.11
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
 USER root
-RUN apt-get install -y nano
+RUN apt-get update && apt install -y nano
 USER ckan
 # Copy custom initialization scripts
 COPY --chown=ckan-sys:ckan-sys docker-entrypoint.d/* /docker-entrypoint.d/
